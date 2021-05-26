@@ -1,0 +1,17 @@
+<html xmlns:th="http://www.thymeleaf.org"
+   xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:insert="fragments.html :: headerfiles">
+    <title>Log in</title>
+</head>
+<body>
+<div class="container">
+    <form action="#" th:action="@{/novo}"
+			method="POST">
+			<input type="text" th:field="*{gato.nome}"
+				placeholder="Employee First Name" class="form-control mb-4 col-4">
+												
+				<button type="submit" class="btn btn-info col-2"> Save gato</button>
+		</form>
+</div>
+</body>
+</html>

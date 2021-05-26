@@ -1,0 +1,59 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:insert="fragments.html :: headerfiles">
+
+<body>
+    <title>Log in</title>
+</head>
+<body>
+<header th:insert="fragments.html :: nav"></header>
+<div class="container">
+    <div style="width:600px;margin-left: auto;margin-right: auto;padding: 24px;">
+        <div class="card mt-4">
+            <div class="card-header">
+                <i class="fa fa-user"></i> Novo Usuario
+            </div>
+            <div class="card-block" style="padding: 24px;">
+                <form action="#" th:action="@{/cadastrar/novo}" method="POST">
+                    <fieldset>
+                       
+                        <!-- Login Controls -->
+                        <div class="form-group">
+                            <label for="username">Username</label>
+                            <input th:field="*{user.username}" type="text" class="form-control" 
+                                   placeholder="Username">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input th:field="*{user.password}" type="password" class="form-control" 
+                                   placeholder="Password">                          
+                        </div>                       
+                                              
+                        <div sec:authorize="hasRole('ROLE_USER')" class="form-group">
+		                    <input th:field="*{user.roles.nome}" type="text" class="form-control" 
+                                   placeholder="">
+		                </div>
+                        <div sec:authorize="hasRole('ROLE_ADMIN')" class="form-group">
+		                    <input th:field="*{user.roles.nome}" type="text" class="form-control" 
+                                   placeholder="Role">
+		                </div>
+		                	<label th:for="roleEnum">role</label>
+			                <select name="roleEnum" th:field="*{roleEnum}">
+						        <option th:each="roleEnum : ${roleEnum}"
+						        		th:text="${roleEnum.nome}"
+						                th:value="${roleEnum}"></option>
+						    </select>
+		                
+
+                        <!-- Login Button -->
+                        <div class="form-actions mt-2">
+                            <button type="submit" class="btn btn-success">Cadastrar</button>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
